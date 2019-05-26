@@ -2,4 +2,4 @@ sudo: false
 language: node_js
 node_js:
   - '10'
-install: npm i -g eslint eslint-config-marine
+install: npm i -g eslint eslint-config-marine eslint-plugin-promise
