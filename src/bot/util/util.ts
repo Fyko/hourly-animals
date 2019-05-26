@@ -2,13 +2,13 @@ export default {
 	/* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
 	CONSTANTS: {
 		TYPES: {
-			DOG: 1,
-			SHIBA: 2,
-			CAT: 3,
-			BIRD: 4,
-			PANDA: 5,
-			FOX: 6,
-			DUCK: 7
+			dog: 1,
+			shiba: 2,
+			cat: 3,
+			bird: 4,
+			panda: 5,
+			fox: 6,
+			duck: 7
 		} as { [key: string]: number },
 		LINKS: {
 			DOG: 'https://dog.ceo/api/breeds/image/random',
