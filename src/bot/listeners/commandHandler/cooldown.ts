@@ -10,8 +10,8 @@ export default class CooldownListener extends Listener {
 		});
 	}
 
-	public exec(msg: Message, _: any, time: number) {
+	public exec(msg: Message, _: any, time: number): Promise<Message | Message[]> {
 		time /= 1000;
-		return msg.reply(`Pipe down! You can use that command again in ${time.toFixed()}.`);
+		return msg.reply(`Chill out! You can use that command again in ${time.toFixed()} seconds.`);
 	}
-};
+}

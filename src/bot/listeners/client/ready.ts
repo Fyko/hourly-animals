@@ -5,11 +5,11 @@ export default class ReadyListener extends Listener {
 		super('ready', {
 			emitter: 'client',
 			event: 'ready',
-			category: 'client',
+			category: 'client'
 		});
 	}
 
-	public async exec() {
+	public async exec(): Promise<void> {
 		this.client.logger.info(`[READY] ${this.client.user!.tag} is ready to send cute puppy pics.`);
 		this.client.user!.setActivity(`@${this.client.user!.tag} help`, { type: 'WATCHING' });
 		setInterval(async () => {
@@ -18,4 +18,4 @@ export default class ReadyListener extends Listener {
 			}
 		}, 900);
 	}
-};
+}

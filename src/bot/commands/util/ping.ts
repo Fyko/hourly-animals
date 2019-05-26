@@ -7,9 +7,9 @@ export default class PingCommand extends Command {
 			aliases: ['ping', 'latency', 'test'],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
-				content: 'Checks the bot\'s ping to Discord.',
+				content: 'Checks the bot\'s ping to Discord.'
 			},
-			category: 'utilities',
+			category: 'utilities'
 		});
 	}
 
@@ -18,5 +18,5 @@ export default class PingCommand extends Command {
 		const ping = Math.round(message.createdTimestamp - msg.createdTimestamp);
 		return message.edit(`Pong! \`${ping}ms\``);
 	}
-};
+}
 

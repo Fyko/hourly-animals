@@ -10,7 +10,7 @@ export default class HelpCommand extends Command {
 			description: {
 				content: 'Displays all available commands or detailed info for a specific command.',
 				usage: '[command]',
-				examples: ['', 'ebay', 'size'],
+				examples: ['', 'ebay', 'size']
 			},
 			clientPermissions: ['EMBED_LINKS'],
 			args: [
@@ -27,7 +27,7 @@ export default class HelpCommand extends Command {
 		});
 	}
 
-	async exec(msg: Message, { command }: { command: Command}): Promise<Message | Message[]> {
+	public async exec(msg: Message, { command }: { command: Command}): Promise<Message | Message[]> {
 		// @ts-ignore
 		const prefix = await this.handler.prefix(msg);
 		if (!command) {
@@ -51,4 +51,4 @@ export default class HelpCommand extends Command {
 		if (command.description.examples && command.description.examples.length) embed.addField('❯ Examples', `\`${command.aliases[0]} ${command.description.examples.join(`\`\n\`${command.aliases[0]} `)}\``);
 		return msg.util!.send({ embed });
 	}
-};
+}

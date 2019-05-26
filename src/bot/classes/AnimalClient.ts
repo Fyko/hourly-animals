@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler, Flag } from 'discord-akairo';
+import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } from 'discord-akairo';
 import { Logger, createLogger, transports, format } from 'winston';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as Schedule from '../models/Schedule';
@@ -9,13 +9,13 @@ declare module 'discord-akairo' {
 	interface AkairoClient {
 		logger: Logger;
 		commandHandler: CommandHandler;
-        config: AnimalConfiguration;
+		config: AnimalConfiguration;
 	}
 }
 
 interface AnimalConfiguration {
-    owner?: string;
-    token?: string;
+	owner?: string;
+	token?: string;
 }
 
 export default class AnimalClient extends AkairoClient {
@@ -24,18 +24,18 @@ export default class AnimalClient extends AkairoClient {
 			messageCacheMaxSize: 1000,
 			disabledEvents: ['TYPING_START'],
 			shardCount: 'auto'
-		})
+		});
 
 		this.config = config;
 
 		this.model = {
-			schedule: Schedule,
-		}
+			schedule: Schedule
+		};
 
 		process.on('unhandledRejection', (err: any): Logger => this.logger.error(`[UNHANDLED REJECTION] ${err.message}`, err.stack));
-	}	
+	}
 
-    public logger = createLogger({
+	public logger = createLogger({
 		format: format.combine(
 			format.colorize({ level: true }),
 			format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
@@ -60,12 +60,12 @@ export default class AnimalClient extends AkairoClient {
 			})
 		]
 	});
-	
-	public model: Object = {
-		schedule: Schedule,
-	}
-    
-    public commandHandler: CommandHandler = new CommandHandler(this, {
+
+	public model: Record<string, any> = {
+		schedule: Schedule
+	};
+
+	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, '..', 'commands'),
 		prefix: 'ha?',
 		aliasReplacement: /-/g,
@@ -94,7 +94,7 @@ export default class AnimalClient extends AkairoClient {
 
 	public config: AnimalConfiguration;
 
-	private async load() {
+	private load(): any {
 		this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 		this.commandHandler.useListenerHandler(this.listenerHandler);
 		this.listenerHandler.setEmitters({
@@ -105,10 +105,10 @@ export default class AnimalClient extends AkairoClient {
 
 		this.commandHandler.loadAll();
 		this.inhibitorHandler.loadAll();
-		this.listenerHandler.loadAll();
+		return this.listenerHandler.loadAll();
 	}
 
-	public async launch() {
+	public async launch(): Promise<string> {
 		await this.load();
 		return this.login(this.config.token);
 	}

@@ -10,9 +10,9 @@ export default class CommandStartedListener extends Listener {
 		});
 	}
 
-	public exec(msg: Message, command: Command) {
+	public exec(msg: Message, command: Command): void {
 		if (msg.util!.parsed!.command) return;
 		const tag = msg.guild ? msg.guild.name : `${msg.author!.tag}/PM`;
 		this.client.logger.info(`[COMMAND] ${command.id} - ${tag}`);
 	}
-};
+}

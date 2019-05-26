@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { resolve } from 'path';
 import { connect } from 'mongoose';
-config({ path: resolve(__dirname, '..', '.env' ) });
+config({ path: resolve(__dirname, '..', '.env') });
 
 import AnimalClient from './bot/classes/AnimalClient';
 import { Logger } from 'winston';

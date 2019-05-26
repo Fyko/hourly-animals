@@ -7,13 +7,13 @@ export default class InfoCommand extends Command {
 			aliases: ['info', 'about', 'stats', 'invite'],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
-				content: 'Returns information on the Developer.',
+				content: 'Returns information on the Developer.'
 			},
-			category: 'utilities',
+			category: 'utilities'
 		});
 	}
 
-	async exec(msg: Message): Promise<Message | Message[]> {
+	public async exec(msg: Message): Promise<Message | Message[]> {
 		const fyko = await this.client.fetchApplication().then(a => a.owner);
 		const format = fyko!.avatar && fyko!.avatar.startsWith('a_') ? 'gif' : 'png';
 		const embed = this.client.util.embed()
@@ -21,5 +21,5 @@ export default class InfoCommand extends Command {
 			.setDescription('This bot was developed by [@FykoPK](https://twitter.com/FykoPK). Shit hit the fan? Tell me in my [Discord Server](https://discord.gg/Agg6yFV)');
 		return msg.util!.send({ embed });
 	}
-};
+}
 

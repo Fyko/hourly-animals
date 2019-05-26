@@ -1,5 +1,5 @@
 import { Listener } from 'discord-akairo';
-import { Guild, WebhookClient } from 'discord.js';
+import { Guild, WebhookClient, Message } from 'discord.js';
 import { stripIndents } from 'common-tags';
 import * as moment from 'moment';
 import 'moment-duration-format';
@@ -9,11 +9,11 @@ export default class GuildCreateListener extends Listener {
 		super('guildCreate', {
 			emitter: 'client',
 			event: 'guildCreate',
-			category: 'client',
+			category: 'client'
 		});
 	}
 
-	public async exec(guild: Guild) {
+	public async exec(guild: Guild): Promise<Message | Message[]> {
 		const owner = this.client.users.get(guild.ownerID);
 		const createdAgo = moment.duration(new Date().getTime() - guild.createdTimestamp).format('D [days and] H [hours ago]');
 		const embed = this.client.util.embed()
@@ -27,11 +27,10 @@ export default class GuildCreateListener extends Listener {
 				**Owner**: ${owner} \`[${owner!.tag}]\`
 			`);
 		const channel = new WebhookClient(process.env.WH_ID as string, process.env.WH_TOKEN as string);
-		await channel.send({
+		return channel.send({
 			embeds: [embed],
 			username: `guild logs n shit`,
 			avatarURL: this.client.user!.displayAvatarURL()
 		});
-			
 	}
-};
+}
