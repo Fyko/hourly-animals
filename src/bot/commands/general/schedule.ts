@@ -4,7 +4,7 @@ import Util from '../../util/util';
 
 export default class ScheduleCommand extends Command {
 	public constructor() {
-		super('info', {
+		super('schedule', {
 			channel: 'guild',
 			aliases: ['schedule'],
 			clientPermissions: ['SEND_MESSAGES'],
