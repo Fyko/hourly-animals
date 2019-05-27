@@ -6,7 +6,7 @@ export default class ScheduleCommand extends Command {
 	public constructor() {
 		super('schedule', {
 			channel: 'guild',
-			aliases: ['schedule', 'hourly'],
+			aliases: ['add', 'schedule', 'hourly'],
 			userPermissions: ['MANAGE_MESSAGES'],
 			clientPermissions: ['SEND_MESSAGES'],
 			ignorePermissions: [process.env.OWNER as string],
@@ -15,7 +15,7 @@ export default class ScheduleCommand extends Command {
 				usage: '<animal> <channel>'
 			},
 			cooldown: 5,
-			category: 'general'
+			category: 'schedule'
 		});
 	}
 
