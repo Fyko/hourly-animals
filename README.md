@@ -6,7 +6,8 @@
 
 > Invite the bot with [this link](https://discordapp.com/api/oauth2/authorize?client_id=582018558759010314&permissions=116800&scope=bot)
 
-> Still getting around to a real README. Just go twiddle your thumbs or somethin.
+
+
 
 ## Self Hosting
 
