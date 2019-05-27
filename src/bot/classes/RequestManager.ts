@@ -53,14 +53,9 @@ export default class RequestManager {
 		}
 	}
 
-	public async panda(): Promise<string> {
-		try {
-			const req = await request('https://some-random-api.ml/img/red_panda');
-			const body = await req.json();
-			return body.file as string;
-		} catch (err) {
-			throw err;
-		}
+	public panda(): string {
+		const pandas = require('../assets/json/pandas');
+		return pandas[Math.floor(Math.random() * pandas.lengh)];
 	}
 
 	public async fox(): Promise<string> {
