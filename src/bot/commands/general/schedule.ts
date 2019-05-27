@@ -7,6 +7,7 @@ export default class ScheduleCommand extends Command {
 		super('schedule', {
 			channel: 'guild',
 			aliases: ['schedule', 'animal', 'pic'],
+			userPermissions: ['MANAGE_MESSAGES'],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
 				content: `Schedules an animal post for the animal you provide.\nYou can chose from ${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join(', ')}.\nUsing --now will send an image right now.`,
@@ -18,11 +19,6 @@ export default class ScheduleCommand extends Command {
 	}
 
 	public *args(): object {
-		const now = yield {
-			match: 'flag',
-			flag: ['--now', '-n']
-		};
-
 		const type = yield {
 			type: Object.keys(Util.CONSTANTS.TYPES),
 			prompt: {
@@ -31,32 +27,18 @@ export default class ScheduleCommand extends Command {
 			}
 		};
 
-		const channel = yield (
-			now
-				? {
+		const channel = yield {
 					type: 'textChannel',
 					prompt: {
 						start: 'what channel would you like to send the images to?',
 						retry: 'please provide a valid text channel.'
 					}
-				}
-				: {}
-		);
+		};
 
-		return { now, type, channel };
+		return { type, channel };
 	}
 
-	public async exec(msg: Message, { type, channel, now }: { type: string; channel: TextChannel; now: boolean }): Promise<Message | Message[]> {
-		if (now || msg.member!.permissions.has('MANAGE_CHANNELS')) {
-			const animal = Util.CONSTANTS.TYPES[type];
-			const image = await this.client.requestManager.getLink(animal);
-			return msg.util!.send({
-				files: [{
-					attachment: image,
-					name: `${type}.png`
-				}]
-			});
-		}
+	public async exec(msg: Message, { type, channel }: { type: string; channel: TextChannel; now: boolean }): Promise<Message | Message[]> {
 		await this.client.scheduleManager.add({
 			type: Util.CONSTANTS.TYPES[type],
 			guild: msg.guild!.id,
