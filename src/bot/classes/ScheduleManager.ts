@@ -41,6 +41,7 @@ export default class ScheduleManager {
 	}
 
 	public async run(): Promise<void> {
+		this.client.logger.info('[SCHEDULE MANAGER] RUNNING SCHEDULES');
 		const schedules = await Schedule.find();
 		for (const doc of schedules) {
 			const image = await this.manager.getLink(doc.type as number).catch(() => {});
