@@ -6,7 +6,7 @@
 
 > Invite the bot with [this link](https://discordapp.com/api/oauth2/authorize?client_id=582018558759010314&permissions=116800&scope=bot)
 
-Hourly Animals is a Discord bot written in `[Discord.js#master](https://github.com/discordjs/discord.js)` and utilizes the `Akairo#beta`(https://github.com/discord-akairo/discord-akairo) framework. 
+Hourly Animals is a Discord bot written in [`Discord.js#master`](https://github.com/discordjs/discord.js) and utilizes the [`Akairo#beta`](https://github.com/discord-akairo/discord-akairo) framework. 
 What's the main feature? You probably guessed it; posting images of everyone's favorite animals directly to your Discord server every hour.
 
 ## Self Hosting
