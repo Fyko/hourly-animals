@@ -4,7 +4,6 @@ import { Message } from 'discord.js';
 import { Logger, createLogger, transports, format } from 'winston';
 import RequestManager from './RequestManager';
 import ScheduleManager from './ScheduleManager';
-import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as Schedule from '../models/Schedule';
 
 
@@ -58,15 +57,6 @@ export default class AnimalClient extends AkairoClient {
 			new transports.Console({
 				format: format.colorize({ level: true }),
 				level: 'info'
-			}),
-			new DailyRotateFile({
-				format: format.combine(
-					format.timestamp(),
-					format.json()
-				),
-				level: 'debug',
-				filename: join(__dirname, '..', '..', '..', 'logs', 'animal-%DATE%.log'),
-				maxFiles: '14d'
 			})
 		]
 	});

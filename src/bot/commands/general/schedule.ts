@@ -14,7 +14,7 @@ export default class ScheduleCommand extends Command {
 				usage: '<channel> [--now]'
 			},
 			cooldown: 5,
-			category: 'general',
+			category: 'general'
 		});
 	}
 
@@ -28,11 +28,11 @@ export default class ScheduleCommand extends Command {
 		};
 
 		const channel = yield {
-					type: 'textChannel',
-					prompt: {
-						start: 'what channel would you like to send the images to?',
-						retry: 'please provide a valid text channel.'
-					}
+			type: 'textChannel',
+			prompt: {
+				start: 'what channel would you like to send the images to?',
+				retry: 'please provide a valid text channel.'
+			}
 		};
 
 		return { type, channel };
