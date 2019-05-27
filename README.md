@@ -30,8 +30,8 @@ What's the main feature? You probably guessed it; posting images of everyone's f
 3. Make new branch! - `git checkout -b name-me`
 4. Commit! - `git commit -am 'I did something!'`
 5. Push it! - `git push origin name-me`
-6a. [Pull it](https://github.com/Fyk0/hourly-animals/compare)!
-6b. Shake it!  
+6. [Pull it](https://github.com/Fyk0/hourly-animals/compare)!
+7. Shake it!  
 
 ## Author
 **Hourly Animals** by Fyko
