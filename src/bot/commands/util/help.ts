@@ -29,7 +29,7 @@ export default class HelpCommand extends Command {
 
 	public async exec(msg: Message, { command }: { command: Command}): Promise<Message | Message[]> {
 		// @ts-ignore
-		const prefix = await this.handler.prefix(msg);
+		const prefix = await this.handler.prefix;
 		if (!command) {
 			const embed = this.client.util.embed()
 				.setTitle('Commands')
