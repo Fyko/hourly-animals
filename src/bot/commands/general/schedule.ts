@@ -32,7 +32,7 @@ export default class ScheduleCommand extends Command {
 		};
 
 		const channel = yield (
-			!now
+			now
 				? {
 					type: 'textChannel',
 					prompt: {
