@@ -31,6 +31,7 @@ export default class ScheduleManager {
 	}
 
 	public async add(data: Data): Promise<void> {
+		this.client.logger.info('[SCHEDULE MANAGER] ADDING NEW SCHEDULE');
 		const doc = new Schedule({
 			type: data.type,
 			guild: data.guild,
