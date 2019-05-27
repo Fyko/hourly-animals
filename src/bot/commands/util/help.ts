@@ -33,6 +33,7 @@ export default class HelpCommand extends Command {
 		if (!command) {
 			const embed = this.client.util.embed()
 				.setTitle('Commands')
+				.setColor(this.client.config.color!)
 				.setDescription(stripIndents`This is a list of the available commands.
                     For more info on a command, type \`${prefix}help <command>\`
                 `);
