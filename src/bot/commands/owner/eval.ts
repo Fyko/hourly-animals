@@ -1,6 +1,6 @@
 import { Command } from 'discord-akairo';
 import { Message } from 'discord.js';
-import util from 'util';
+import { inspect } from 'util';
 import { stripIndents } from 'common-tags';
 
 export default class EvalCommand extends Command {
@@ -32,7 +32,7 @@ export default class EvalCommand extends Command {
 			evaled = await eval(code); 
 			type = typeof evaled;
 			if (typeof evaled === 'object') {
-				evaled = util.inspect(evaled, {
+				evaled = inspect(evaled, {
 					depth: 0
 				});
 			}
