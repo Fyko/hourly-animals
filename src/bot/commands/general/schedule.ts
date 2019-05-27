@@ -11,7 +11,7 @@ export default class ScheduleCommand extends Command {
 			clientPermissions: ['SEND_MESSAGES'],
 			ignorePermissions: [process.env.OWNER as string],
 			description: {
-				content: `Schedules an animal post for the animal you provide.\nYou can chose from ${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join(', ')}.\nUsing --now will send an image right now.`,
+				content: `Schedules an hourly post in a channel you provide.\nYou can chose from ${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join(', ')}.`,
 				usage: '<animal> <channel>'
 			},
 			cooldown: 5,

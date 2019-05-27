@@ -45,6 +45,7 @@ export default class HelpCommand extends Command {
 			return msg.util!.send({ embed });
 		}
 		const embed = this.client.util.embed()
+			.setColor(this.client.config.color!)
 			.setTitle(`\`${command.aliases[0]} ${command.description.usage ? command.description.usage : ''}\``)
 			.addField('❯  Description', command.description.content || '\u200b');
 
