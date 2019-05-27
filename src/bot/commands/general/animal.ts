@@ -6,7 +6,6 @@ export default class PictureCommand extends Command {
 	public constructor() {
 		super('picture', {
 			aliases: ['picture', 'pic'],
-			userPermissions: ['MANAGE_MESSAGES'],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
 				content: `Sends an animal pic for the animal you provide.\nYou can chose from ${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join(', ')}.`,
