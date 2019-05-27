@@ -10,7 +10,7 @@
     "start": "node .",
     "build": "gulp",
     "test": "npm run lint",
-		"lint": "eslint src --ext .ts --ext .json"
+    "lint": "eslint src --ext .ts --ext .json"
   },
   "dependencies": {
     "@naval-base/ms": "^2.2.1",

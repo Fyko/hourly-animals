@@ -10,6 +10,15 @@ export default {
 			fox: 6,
 			duck: 7
 		} as { [key: string]: number },
+		REVERSE: {
+			1: 'dog',
+			2: 'shiba',
+			3: 'cat',
+			4: 'bird',
+			5: 'panda',
+			6: 'fox',
+			7: 'duck'
+		} as { [key: number]: string },
 		LINKS: {
 			DOG: 'https://dog.ceo/api/breeds/image/random',
 			SHIBA: 'https://shibe.online/api/shibes',

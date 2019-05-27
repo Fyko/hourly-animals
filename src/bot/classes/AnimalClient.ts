@@ -1,6 +1,8 @@
 import { join } from 'path';
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } from 'discord-akairo';
 import { Logger, createLogger, transports, format } from 'winston';
+import RequestManager from './RequestManager';
+import ScheduleManager from './ScheduleManager';
 import * as DailyRotateFile from 'winston-daily-rotate-file';
 import * as Schedule from '../models/Schedule';
 
@@ -10,6 +12,8 @@ declare module 'discord-akairo' {
 		logger: Logger;
 		commandHandler: CommandHandler;
 		config: AnimalConfiguration;
+		requestManager: RequestManager;
+		scheduleManager: ScheduleManager;
 	}
 }
 
@@ -31,6 +35,10 @@ export default class AnimalClient extends AkairoClient {
 		this.model = {
 			schedule: Schedule
 		};
+
+		this.requestManager = new RequestManager();
+
+		this.scheduleManager = new ScheduleManager(this);
 
 		process.on('unhandledRejection', (err: any): Logger => this.logger.error(`[UNHANDLED REJECTION] ${err.message}`, err.stack));
 	}
@@ -94,7 +102,11 @@ export default class AnimalClient extends AkairoClient {
 
 	public config: AnimalConfiguration;
 
-	private load(): any {
+	public requestManager: RequestManager;
+
+	public scheduleManager: ScheduleManager;
+
+	private async load(): Promise<void> {
 		this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
 		this.commandHandler.useListenerHandler(this.listenerHandler);
 		this.listenerHandler.setEmitters({
@@ -102,10 +114,10 @@ export default class AnimalClient extends AkairoClient {
 			inhibitorHandler: this.inhibitorHandler,
 			listenerHandler: this.listenerHandler
 		});
-
 		this.commandHandler.loadAll();
 		this.inhibitorHandler.loadAll();
-		return this.listenerHandler.loadAll();
+		this.listenerHandler.loadAll();
+		await this.scheduleManager.init();
 	}
 
 	public async launch(): Promise<string> {

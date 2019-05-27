@@ -1,11 +1,10 @@
-/* this was stolen from crawl thanks */
 import { Command } from 'discord-akairo';
-import { Message, Util } from 'discord.js';
-import * as util from 'util';
+import { Message } from 'discord.js';
+import util from 'util';
 import { stripIndents } from 'common-tags';
 
 export default class EvalCommand extends Command {
-	constructor() {
+	public constructor() {
 		super('eval', {
 			category: 'owner',
 			aliases: ['eval', 'js'],
@@ -24,12 +23,13 @@ export default class EvalCommand extends Command {
 		});
 	}
 
-	async exec(msg: Message, { code }: { code: string }) {
+	public async exec(msg: Message, { code }: { code: string }): Promise<Message | Message[]> {
 		let evaled;
 		const start = Date.now();
 		let type;
 		try {
-			evaled = await eval(code);
+			// eslint-disable-next-line
+			evaled = await eval(code); 
 			type = typeof evaled;
 			if (typeof evaled === 'object') {
 				evaled = util.inspect(evaled, {
@@ -63,4 +63,4 @@ export default class EvalCommand extends Command {
             ⏱ ${end - start}ms
         `);
 	}
-};
+}

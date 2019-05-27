@@ -1,6 +1,5 @@
-import { Command, Inhibitor, Listener, ClientUtil } from 'discord-akairo';
+import { Command, Inhibitor, Listener } from 'discord-akairo';
 import { Message } from 'discord.js';
-import { IncomingHttpStatusHeader } from 'http2';
 
 export default class ReloadCommand extends Command {
 	public constructor() {
@@ -15,18 +14,18 @@ export default class ReloadCommand extends Command {
 		});
 	}
 
-	*args() {
+	public *args(): object {
 		const type = yield {
-			match: 'option',
-			flag: ['type:'],
-			type: [['command', 'c'], ['inhibitor', 'i'], ['listener', 'l']],
-			default: 'command'
+			'match': 'option',
+			'flag': ['type:'],
+			'type': [['command', 'c'], ['inhibitor', 'i'], ['listener', 'l']],
+			'default': 'command'
 		};
 
 		const mod = yield {
 			type: (msg: Message, phrase: string) => {
-                if (!phrase) return null;
-                // @ts-ignore
+				if (!phrase) return null;
+				// @ts-ignore
 				const resolver = this.handler.resolver.type({
 					command: 'commandAlias',
 					inhibitor: 'inhibitor',
@@ -40,7 +39,7 @@ export default class ReloadCommand extends Command {
 		return { type, mod };
 	}
 
-	exec(msg: Message, { type, mod }:{ type: any, mod: Command | Inhibitor | Listener }) {
+	public exec(msg: Message, { type, mod }: { type: any; mod: Command | Inhibitor | Listener }): Promise<Message | Message[]> {
 		if (!mod) {
 			return msg.util!.reply(`Invalid ${type} ${type === 'command' ? 'alias' : 'ID'} specified to reload.`);
 		}
