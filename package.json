@@ -8,7 +8,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "node .",
-    "build": "gulp",
+    "build": "npx gulp",
     "test": "npm run lint",
     "lint": "eslint src --ext .ts --ext .json"
   },
