@@ -20,6 +20,7 @@ declare module 'discord-akairo' {
 interface AnimalConfiguration {
 	owner?: string;
 	token?: string;
+	color?: string;
 }
 
 export default class AnimalClient extends AkairoClient {

@@ -6,7 +6,7 @@ config({ path: resolve(__dirname, '..', '.env') });
 import AnimalClient from './bot/classes/AnimalClient';
 import { Logger } from 'winston';
 
-const client = new AnimalClient({ token: process.env.TOKEN, owner: process.env.OWNER });
+const client = new AnimalClient({ token: process.env.TOKEN, owner: process.env.OWNER, color: process.env.COLOR });
 
 client
 	.on('error', (err): Logger => client.logger.error(`[CLIENT ERROR] ${err.message}`, err.stack))
