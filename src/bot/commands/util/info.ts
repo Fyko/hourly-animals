@@ -24,7 +24,7 @@ export default class InfoCommand extends Command {
 				Want some random animal photos in your server? [Invite](https://discordapp.com/api/oauth2/authorize?client_id=582018558759010314&permissions=116800&scope=bot) me!
 				Shit hit the fan? Tell me in my [Discord Server](https://discord.gg/Agg6yFV).
 				Wanna see the code? It\'s [open source](https://github.com/Fyk0/hourly-animals/)!
-			`)
+			`);
 		return msg.util!.send({ embed });
 	}
 }
