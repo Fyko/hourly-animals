@@ -37,7 +37,36 @@ export default class ScheduleCommand extends Command {
 					flag: ['--now', '-n']
 				}
 			]
-		});
+		});	
+	}
+
+	public *args(): object {
+
+		const now = yield {
+			match: 'flag',
+			flag: ['--now', '-n']
+		}
+
+		const type = yield {
+			'type': Object.keys(Util.CONSTANTS.TYPES),
+			prompt: {
+				start: `what animal do you want to schedule?\n${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join('or')}.`,
+				retry: 'please provide a valid animal option.'
+			}
+		};
+
+		const channel = yield (
+			now ? 
+				{
+					type: 'textChannel',
+					prompt: {
+						start: 'what channel would you like to send the images to?',
+						retry: 'please provide a valid text channel.'
+					}
+				} : {}
+		);
+
+		return { now, type, channel }
 	}
 
 	public async exec(msg: Message, { type, channel, now }: { type: string; channel: TextChannel; now: boolean }): Promise<Message | Message[]> {
