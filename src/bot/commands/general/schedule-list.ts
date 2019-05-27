@@ -27,7 +27,7 @@ export default class ScheduleListCommand extends Command {
 	public async exec(msg: Message): Promise<Message | Message[]> {
 		const schedules = await this.client.model.default.find({ guild: msg.guild!.id });
 		if (!schedules.length) {
-			return msg.util!.send(`This server has no hourly posts! ${msg.member!.permissions.has('MANAGE_MESSAGES') ? `Why not add some with \`${this.handler.prefix}schedule add\`!` : ''}`);
+			return msg.util!.send(`This server has no hourly posts! ${msg.member!.permissions.has('MANAGE_MESSAGES') ? `Why not add some with \`${this.handler.prefix}add\`!` : ''}`);
 		}
 		const embed = this.client.util.embed()
 			.setColor(this.client.config.color!)
