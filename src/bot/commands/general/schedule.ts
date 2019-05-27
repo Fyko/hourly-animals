@@ -70,7 +70,7 @@ export default class ScheduleCommand extends Command {
 	}
 
 	public async exec(msg: Message, { type, channel, now }: { type: string; channel: TextChannel; now: boolean }): Promise<Message | Message[]> {
-		if (now) {
+		if (now || msg.member!.permissions.has('MANAGE_CHANNELS')) {
 			const animal = Util.CONSTANTS.TYPES[type];
 			const image = await this.client.requestManager.getLink(animal);
 			return msg.util!.send({
