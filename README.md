@@ -1,4 +1,4 @@
-<img width="460" height="355" align="left" style="float: left; margin: 0 10px 0 0;" alt="Hourly Animals" src="https://i.imgur.com/0T8Srkt.jpg">  
+<img width="230" height="175" align="left" style="float: left; margin: 0 10px 0 0;" alt="Hourly Animals" src="https://i.imgur.com/0T8Srkt.jpg">  
 
 # Hourly Animals 🦊
 [![Build Status](https://travis-ci.com/Fyk0/hourly-animals.svg?branch=master)](https://travis-ci.com/Fyk0/hourly-animals)
