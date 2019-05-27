@@ -22,7 +22,6 @@ export default class ScheduleManager {
 
 	protected checkInterval!: NodeJS.Timeout;
 
-
 	public constructor(client: AnimalClient, { rate = 30000 } = {}) {
 		this.client = client;
 		this.manager = new RequestManager();
@@ -42,6 +41,7 @@ export default class ScheduleManager {
 	}
 
 	public async run(): Promise<void> {
+		this.hour = new Date().getHours();
 		this.client.logger.info('[SCHEDULE MANAGER] RUNNING SCHEDULES');
 		const schedules = await Schedule.find();
 		for (const doc of schedules) {

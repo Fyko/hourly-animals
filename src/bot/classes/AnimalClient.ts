@@ -14,6 +14,7 @@ declare module 'discord-akairo' {
 		config: AnimalConfiguration;
 		requestManager: RequestManager;
 		scheduleManager: ScheduleManager;
+		model: any;
 	}
 }
 
@@ -33,9 +34,7 @@ export default class AnimalClient extends AkairoClient {
 
 		this.config = config;
 
-		this.model = {
-			schedule: Schedule
-		};
+		this.model = Schedule;
 
 		this.requestManager = new RequestManager();
 
@@ -61,9 +60,6 @@ export default class AnimalClient extends AkairoClient {
 		]
 	});
 
-	public model: Record<string, any> = {
-		schedule: Schedule
-	};
 
 	public commandHandler: CommandHandler = new CommandHandler(this, {
 		directory: join(__dirname, '..', 'commands'),

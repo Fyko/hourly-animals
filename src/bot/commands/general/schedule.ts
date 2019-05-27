@@ -6,12 +6,12 @@ export default class ScheduleCommand extends Command {
 	public constructor() {
 		super('schedule', {
 			channel: 'guild',
-			aliases: ['schedule', 'animal', 'pic'],
+			aliases: ['schedule', 'hourly'],
 			userPermissions: ['MANAGE_MESSAGES'],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
 				content: `Schedules an animal post for the animal you provide.\nYou can chose from ${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join(', ')}.\nUsing --now will send an image right now.`,
-				usage: '<channel> [--now]'
+				usage: '<animal> <channel>'
 			},
 			cooldown: 5,
 			category: 'general'
@@ -39,6 +39,11 @@ export default class ScheduleCommand extends Command {
 	}
 
 	public async exec(msg: Message, { type, channel }: { type: string; channel: TextChannel; now: boolean }): Promise<Message | Message[]> {
+		const check = await this.client.model.default.find({ channel: channel.id, type: Util.CONSTANTS.TYPES[type] });
+		if (check.length) {
+			return msg.util!.send(`Sorry pal! You're already running a ${type} schedule in that channel.`);
+		}
+
 		await this.client.scheduleManager.add({
 			type: Util.CONSTANTS.TYPES[type],
 			guild: msg.guild!.id,
