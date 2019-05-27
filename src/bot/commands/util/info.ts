@@ -19,7 +19,7 @@ export default class InfoCommand extends Command {
 		const embed = this.client.util.embed()
 			.setColor(this.client.config.color!)
 			.setAuthor('Bot Information', fyko!.displayAvatarURL({ format }))
-			.setDescription('Want some random animal photos in your server? [Invite](https://discordapp.com/api/oauth2/authorize?client_id=582018558759010314&permissions=116800&scope=bot) me!. Shit hit the fan? Tell me in my [Discord Server](https://discord.gg/Agg6yFV)');
+			.setDescription('Want some random animal photos in your server? [Invite](https://discordapp.com/api/oauth2/authorize?client_id=582018558759010314&permissions=116800&scope=bot) me!\nShit hit the fan? Tell me in my [Discord Server](https://discord.gg/Agg6yFV).');
 		return msg.util!.send({ embed });
 	}
 }
