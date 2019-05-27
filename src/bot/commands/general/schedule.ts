@@ -6,7 +6,7 @@ export default class ScheduleCommand extends Command {
 	public constructor() {
 		super('schedule', {
 			channel: 'guild',
-			aliases: ['schedule'],
+			aliases: ['schedule', 'animal', 'pic'],
 			clientPermissions: ['SEND_MESSAGES'],
 			description: {
 				content: `Schedules an animal post for the animal you provide.\nYou can chose from ${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join(', ')}.\nUsing --now will send an image right now.`,
@@ -14,29 +14,6 @@ export default class ScheduleCommand extends Command {
 			},
 			cooldown: 5,
 			category: 'general',
-			args: [
-				{
-					id: 'type',
-					type: Object.keys(Util.CONSTANTS.TYPES),
-					prompt: {
-						start: `what animal do you want to schedule?\n${Object.keys(Util.CONSTANTS.TYPES).map(a => `\`${a}\``).join('or')}.`,
-						retry: 'please provide a valid animal option.'
-					}
-
-				},
-				{
-					id: 'channel',
-					type: 'textChannel',
-					prompt: {
-						start: 'what channel would you like to send the images to?',
-						retry: 'please provide a valid text channel.'
-					}
-				},
-				{
-					id: 'now',
-					flag: ['--now', '-n']
-				}
-			]
 		});
 	}
 
@@ -55,7 +32,7 @@ export default class ScheduleCommand extends Command {
 		};
 
 		const channel = yield (
-			now
+			!now
 				? {
 					type: 'textChannel',
 					prompt: {
