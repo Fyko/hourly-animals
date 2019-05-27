@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } from 'discord-akairo';
+import { Message } from 'discord.js';
 import { Logger, createLogger, transports, format } from 'winston';
 import RequestManager from './RequestManager';
 import ScheduleManager from './ScheduleManager';
@@ -85,8 +86,8 @@ export default class AnimalClient extends AkairoClient {
 		defaultCooldown: 3000,
 		argumentDefaults: {
 			prompt: {
-				modifyStart: (_, str): string => `${str}\n\nType \`cancel\` to cancel the command.`,
-				modifyRetry: (_, str): string => `${str}\n\nType \`cancel\` to cancel the command.`,
+				modifyStart: (msg: Message, str: string): string => `${msg.author}, ${str}\n\nType \`cancel\` to cancel the command.`,
+				modifyRetry: (msg: Message, str: string): string => `${msg.author}, ${str}\n\nType \`cancel\` to cancel the command.`,
 				timeout: 'Guess you took too long, the command has been cancelled.',
 				ended: "More than 3 tries and you still didn't quite get it. The command has been cancelled",
 				cancel: 'The command has been cancelled.',
